@@ -5,15 +5,15 @@ function isValid({ id, name, meaning, quadrant, starsWithPlanets }) {
   return id && name && meaning && quadrant && starsWithPlanets;
 }
 
-function update(constellation) {
+async function update(constellation) {
   try {
-    const response = 'put axios.put here'
-    return 
+    const response = await axios.put(`${BASE_URL}/constellations/${constellation.id}`, constellation);
+    return response
   } catch (error) {
-
+    const id = constellation.id;
     return Promise.reject({
-      error: ``
-    })
+      error: `Updating constellation (id: ${id}) failed.`
+    });
   }
 }
 
