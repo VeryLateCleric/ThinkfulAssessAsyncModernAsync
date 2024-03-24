@@ -20,9 +20,22 @@ async function update(constellation) {
 async function bulkImport(constellations) {
   if (!Array.isArray(constellations)) {
     return Promise.reject({
-      error: "Inputted argument must be an array."
-    })
+        error: "Inputted argument must be an array."
+    });
   }
+
+  const requests = [];
+  for (const constellation of constellations) {
+    if (!isValid(constellation)) {
+        return Promise.reject({
+            error: "All constellations must include relevant fields."
+        });
+    }
+  } // moved requests.push outside of for loop to have it run only if all constellations isValid is true
+  for (const constellation of constellations) {
+    requests.push(update(constellation));
+  }
+  return Promise.allSettled(requests);
 }
 
 module.exports = { bulkImport, update };
