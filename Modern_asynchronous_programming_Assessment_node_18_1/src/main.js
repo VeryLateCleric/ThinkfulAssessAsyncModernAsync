@@ -5,7 +5,17 @@ function isValid({ id, name, meaning, quadrant, starsWithPlanets }) {
   return id && name && meaning && quadrant && starsWithPlanets;
 }
 
-function update(constellation) {}
+function update(constellation) {
+  try {
+    const response = 'put axios.put here'
+    return 
+  } catch (error) {
+
+    return Promise.reject({
+      error: ``
+    })
+  }
+}
 
 function bulkImport(constellations) {}
 
