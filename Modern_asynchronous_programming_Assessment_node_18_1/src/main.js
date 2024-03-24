@@ -17,6 +17,12 @@ async function update(constellation) {
   }
 }
 
-function bulkImport(constellations) {}
+async function bulkImport(constellations) {
+  if (!Array.isArray(constellations)) {
+    return Promise.reject({
+      error: "Inputted argument must be an array."
+    })
+  }
+}
 
 module.exports = { bulkImport, update };
